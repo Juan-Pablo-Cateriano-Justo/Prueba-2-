@@ -113,3 +113,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // ==========================================
+    // 1. INVOCACIÓN CINEMÁTICA DE LA CARTA YU-GI-OH!
+    // ==========================================
+    const yugiohCard = document.getElementById('card-summon');
+    
+    if (yugiohCard) {
+        // Retraso elegante para que cargue la interfaz y "caiga" la invocación
+        setTimeout(() => {
+            yugiohCard.classList.add('summoned');
+            console.log("⚔️ ¡Monstruo invocado en Modo de Ataque con éxito!");
+        }, 400); 
+    }
+
+    // ==========================================
+    // 2. MOTOR GRÁFICO DE ONDAS (SENO / COSENO)
+    // ==========================================
+    // (Conserva aquí todo el código del Canvas que pusimos en el paso anterior)
+    const boton = document.getElementById('btn-simular');
+    const canvas = document.getElementById('canvas-ondas');
+    // ... todo el resto de tu lógica del canvas sigue igual ...
