@@ -1,10 +1,11 @@
 
 :root {
-    --bg-dark: #1a1a2e;          
-    --primary: #f72585;          
-    --secondary: #480ca8;        
-    --accent: #4cc9f0;           
-    --text-light: #f3c4fb;       
+    --space-dark: #0d0b18;       /* El cielo oscuro superior */
+    --cosmic-purple: #321555;    /* Púrpura de las nubes altas */
+    --sunset-magenta: #cc2b7a;   /* El rosa encendido del horizonte */
+    --sunset-orange: #f07167;    /* El naranja cálido del sol ocultándose */
+    --sunset-gold: #fed9b7;      /* Los destellos dorados/crema de las estrellas */
+    --cyan-glow: #4cc9f0;        /* El azul neón de las estelas de luz */
 }
 
 * {
@@ -15,8 +16,8 @@
 }
 
 body {
-    background-color: var(--bg-dark);
-    color: var(--text-light);
+    background-color: var(--space-dark);
+    color: var(--sunset-gold);
     line-height: 1.6;
     padding: 20px;
     display: flex;
@@ -28,135 +29,130 @@ body {
 .container {
     max-width: 800px;
     width: 100%;
-    background: linear-gradient(135deg, rgba(72, 12, 168, 0.5) 0%, rgba(26, 26, 46, 0.9) 100%);
+
+    background: linear-gradient(180deg, 
+                rgba(50, 21, 85, 0.65) 0%, 
+                rgba(204, 43, 122, 0.25) 60%, 
+                rgba(13, 11, 24, 0.95) 100%);
     padding: 40px;
-    border-radius: 20px;
-    border: 1px solid rgba(247, 37, 133, 0.3);
-    box-shadow: 0 10px 40px rgba(72, 12, 168, 0.2);
+    border-radius: 24px;
+
+    border: 1px solid rgba(240, 113, 103, 0.25);
+
+    box-shadow: 0 15px 50px rgba(50, 21, 85, 0.5), 0 0 30px rgba(204, 43, 122, 0.1);
     margin-top: 50px;
     position: relative; 
 }
 
-
 h1 {
-    color: var(--text-light);
+    color: var(--sunset-gold);
     margin-bottom: 25px;
     text-align: center;
     font-family: 'Cinzel', serif; 
-    font-size: 2.8rem; 
-    text-shadow: 0 0 10px rgba(247, 37, 133, 0.6), 0 0 20px rgba(247, 37, 133, 0.4);
-}
-
-p {
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-    color: var(--text-light);
+    font-size: 2.8rem;
+    /* Brillo de título más suave y elegante */
+    text-shadow: 0 0 15px rgba(240, 113, 103, 0.5), 0 0 30px rgba(204, 43, 122, 0.3);
 }
 
 
-
-/* Textos informativos de arriba */
 .academic-text {
     text-align: center;
     font-weight: 700;
+    color: var(--sunset-orange);
     margin-bottom: 10px;
+    text-shadow: 0 0 8px rgba(240, 113, 103, 0.3);
 }
 
-/* Distribución en paralelo para la foto y el bloque de links */
 .content-flex {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    flex-wrap: wrap; /* Si se encoge la pantalla, la info baja ordenadamente */
+    gap: 40px;
+    margin: 35px 0;
+    flex-wrap: wrap;
 }
 
-/* Estilo para la imagen Ale.png */
+/* --- DISEÑO DE LA CARTA (ESTADO INICIAL PARA ANIMAR) --- */
 .profile-img {
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 380px; 
     object-fit: cover;
-    border-radius: 15px;
-    border: 2px solid rgba(76, 201, 240, 0.4);
-    box-shadow: 0 0 15px rgba(76, 201, 240, 0.2);
+    border-radius: 18px;
+    border: 2px solid rgba(254, 217, 183, 0.3);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    
+
+    opacity: 0;
+    transform: scale(0.85) translateY(30px) rotateX(10deg);
+    transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 2s ease-in-out;
 }
 
-/* Contenedor vertical de enlaces y dedicatoria */
+/* Clase de activación por JS */
+.profile-img.summoned {
+    opacity: 1;
+    transform: scale(1) translateY(0) rotateX(0deg);
+    /* Brillo neón final que mezcla el cian de las estelas con el rosa */
+    box-shadow: 0 0 25px rgba(76, 201, 240, 0.4), 
+                0 0 50px rgba(204, 43, 122, 0.2),
+                0 15px 35px rgba(0,0,0,0.6);
+}
+
 .links-container {
     flex: 1;
-    min-width: 250px;
+    min-width: 260px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
 }
 
-/* Enlaces limpios que cambian de color al pasar el cursor */
 .social-link {
-    color: var(--accent);
+    color: var(--cyan-glow);
     text-decoration: none;
     font-weight: bold;
     font-size: 1.1rem;
-    transition: color 0.2s ease, text-shadow 0.2s ease;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .social-link:hover {
-    color: var(--primary);
-    text-shadow: 0 0 8px rgba(247, 37, 133, 0.6);
+    color: var(--sunset-orange);
+    transform: translateX(5px); /* Desplazamiento lateral suave al pasar el mouse */
+    text-shadow: 0 0 8px rgba(240, 113, 103, 0.6);
 }
 
-/* Mensaje destacado para el profesor con borde de neón izquierdo */
 .dedicatory-text {
     font-size: 0.95rem;
-    color: rgba(243, 196, 251, 0.8);
-    line-height: 1.5;
+    color: rgba(254, 217, 183, 0.75);
+    line-height: 1.6;
     margin-top: 15px;
-    border-left: 3px solid var(--primary);
-    padding-left: 10px;
+    border-left: 3px solid var(--sunset-magenta);
+    padding-left: 12px;
 }
 
-/* ==========================================================================
-   BOTÓN INTERACTIVO DE LÓGICA (APP.JS)
-   ========================================================================== */
+
 .btn-interactive {
     display: inline-block;
-    padding: 12px 30px;
+    padding: 12px 35px;
     margin-top: 20px;
-    color: var(--text-light);
+    color: var(--space-dark); /* Texto oscuro para contrastar con el fondo brillante */
     text-transform: uppercase;
     font-weight: bold;
-    letter-spacing: 1px;
-    text-decoration: none;
+    letter-spacing: 1.5px;
     font-family: 'Cinzel', serif;
+    border-radius: 30px; /* Más redondeado y elegante */
 
-    background: linear-gradient(45deg, var(--accent) 0%, var(--primary) 100%);
+    /* Degradado directo del atardecer: Naranja a Magenta */
+    background: linear-gradient(45deg, var(--sunset-orange) 0%, var(--sunset-magenta) 100%);
     border: none;
-    border-radius: 8px;
     cursor: pointer;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-   
-    box-shadow: 0 0 10px rgba(76, 201, 240, 0.5);
+    font-size: 0.95rem;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 5px 15px rgba(204, 43, 122, 0.4);
 }
 
 .btn-interactive:hover {
-    box-shadow: 0 0 15px rgba(247, 37, 133, 0.8), 0 0 30px rgba(76, 201, 240, 0.6);
-    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(240, 113, 103, 0.6), 0 0 30px rgba(76, 201, 240, 0.3);
+    transform: translateY(-3px);
+    color: #fff;
 }
-
-/* Estado inicial de la imagen (oculta y en perspectiva 3D) */
-.profile-img {
-    opacity: 0;
-    transform: scale(0.3) rotateY(180deg) translateY(50px);
-    transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1); /* Efecto rebote elástico */
-}
-
-/* Clase que aplicará JavaScript para activar la "invocación" */
-.profile-img.summoned {
-    opacity: 1;
-    transform: scale(1) rotateY(0deg) translateY(0);
-    /* Extra: un destello neón extra fuerte al aparecer */
-    box-shadow: 0 0 30px var(--accent), 0 0 60px rgba(247, 37, 133, 0.4);
-}
-
