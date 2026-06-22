@@ -156,3 +156,36 @@ h1 {
     transform: translateY(-3px);
     color: #fff;
 }
+
+
+.simulation-box {
+    text-align: center;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#canvas-ondas {
+    width: 100%;
+    height: 180px;
+    background: rgba(13, 11, 24, 0.6); /* Fondo oscuro semitransparente */
+    border-radius: 12px;
+    border: 1px solid rgba(76, 201, 240, 0.2);
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.6);
+    
+    /* El canvas inicia oculto y colapsado */
+    display: none;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Clase para desplegar el canvas con suavidad por JS */
+#canvas-ondas.active {
+    display: block;
+    opacity: 1;
+    transform: scaleY(1);
+}
