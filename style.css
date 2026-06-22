@@ -144,3 +144,19 @@ p {
     box-shadow: 0 0 15px rgba(247, 37, 133, 0.8), 0 0 30px rgba(76, 201, 240, 0.6);
     transform: translateY(-2px);
 }
+
+/* Estado inicial de la imagen (oculta y en perspectiva 3D) */
+.profile-img {
+    opacity: 0;
+    transform: scale(0.3) rotateY(180deg) translateY(50px);
+    transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1); /* Efecto rebote elástico */
+}
+
+/* Clase que aplicará JavaScript para activar la "invocación" */
+.profile-img.summoned {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg) translateY(0);
+    /* Extra: un destello neón extra fuerte al aparecer */
+    box-shadow: 0 0 30px var(--accent), 0 0 60px rgba(247, 37, 133, 0.4);
+}
+
